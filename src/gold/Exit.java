@@ -38,8 +38,9 @@ public class Exit {
 				}
 			}
 		}
-		int count=0;
+		int count=1;
 		while (!animal.isEmpty()) {
+			showMap(map);
 			LinkedList<Point> curWaterSet = water;
 //			while(!curWaterSet.isEmpty()) {
 			for(int i=0; i<curWaterSet.size(); i++) {
@@ -58,7 +59,7 @@ public class Exit {
 				
 			}
 			Point curAnimal = animal.poll();
-			map[curAnimal.x][curAnimal.y] = 'X';
+			map[curAnimal.x][curAnimal.y] = '.';
 			for(int dir=0; dir<4; dir++) {
 				int nx = curAnimal.x + dx[dir];
 				int ny = curAnimal.y + dy[dir];
@@ -73,7 +74,6 @@ public class Exit {
 					animal.add(next);
 				}
 			}
-			
 			count++;
 			if(animal.isEmpty()) System.out.println(-1);
 		}
@@ -88,13 +88,16 @@ public class Exit {
 			}
 			System.out.println();
 		}
-		System.out.println("**********");
+		System.out.println("***************");
 	}
 }
 
 class Point {
 	int x;
 	int y;
+
+	public Point() {
+	}
 
 	public Point(int x, int y) {
 		this.x = x;
