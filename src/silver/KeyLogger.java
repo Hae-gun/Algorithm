@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class KeyLogger {
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -15,28 +17,34 @@ public class KeyLogger {
 		List<String> result = new ArrayList<>(); 
 		while(n--!=0) {
 			char[] line = br.readLine().toCharArray();
-			int logIdx = 0;
-			LinkedList<Character> words = new LinkedList<>();
-			for(char word : line) {
-//				System.out.println(words);
-				if(word == '<' && logIdx>0) {
-					logIdx--;
-				}else if(word=='>' && logIdx <words.size()) {
-					logIdx++;
-				}else if(word != '<' && word != '>' && word !='-'){
-					words.add(logIdx++,word);
-				}else if(word == '-' && logIdx>0 && logIdx <= words.size()) {
-					words.remove(--logIdx);
+			LinkedList<Character> front = new LinkedList<Character>();
+			Stack<Character> tail = new Stack<Character>();
+			
+			for(char c : line) {
+				if(c != '<' && c!= '>' && c!='-') {
+					front.add(c);
 				}
+				
+				
+				if(c == '>' && !tail.isEmpty()) {
+					front.add(tail.pop());
+				}else if(c == '<' && !front.isEmpty()) {
+					tail.push(front.removeLast());
+				}else if(c == '-' && !front.isEmpty()) {
+					front.removeLast();
+				}
+//				System.out.println(front);
+//				System.out.println(tail);
+//				System.out.println("_______");
+				
 			}
-			String tmp = "";
-			for(char c : words) {
-				tmp += c;
+			String s = "";
+			while(!front.isEmpty()) {
+				s += front.poll();
 			}
-			result.add(tmp);
-//			System.out.println(words);
-		}
-		for(String s : result) {
+			while(!tail.isEmpty()) {
+				s += tail.pop();
+			}
 			System.out.println(s);
 		}
 		
