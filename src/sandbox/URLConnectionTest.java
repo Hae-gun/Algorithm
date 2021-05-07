@@ -26,7 +26,7 @@ public class URLConnectionTest {
 			temp = temp.replaceAll("><", ">\n<");
 			output.write(temp.getBytes());
 		}
-		}catch (MalformedURLException e) {
+		}catch (MalformedURLException e) { 
 			
 		} catch (IOException e) {
 			e.printStackTrace();
