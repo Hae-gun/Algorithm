@@ -19,12 +19,12 @@ public class DpPractice {
 		
 		Node head = new Node("head");
 		Node tail = new Node("tail");
-		Node node1 = new Node(head,null,idx++);
-		head.next = node1;
+//		Node node1 = new Node(head,null,idx++);
+//		head.next = node1;
 
 		Node temp = head;
 		while(true) {
-			System.out.println(temp.num);
+//			System.out.println(temp.num);
 			temp = temp.next;
 			if(temp == null) break;
 		}
