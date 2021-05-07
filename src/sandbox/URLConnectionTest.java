@@ -23,7 +23,7 @@ public class URLConnectionTest {
 		FileOutputStream output = new FileOutputStream("D:/board/result.html");
 //		String delete = "								<a class=\"link_sub_item\" href=\"/category/";
 		while((temp = br.readLine()) != null) {
-			temp = temp.replaceAll("><", ">\n<");
+			temp = temp.replaceAll("><",">\n<");
 			output.write(temp.getBytes());
 		}
 		}catch (MalformedURLException e) { 
