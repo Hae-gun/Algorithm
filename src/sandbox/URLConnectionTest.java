@@ -1,6 +1,7 @@
 package sandbox;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,7 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.util.Arrays;
 
 public class URLConnectionTest {
 	public static void main(String[] args) {
@@ -20,6 +20,11 @@ public class URLConnectionTest {
 		URLDecoder decode = new URLDecoder();
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		File f = new File("D:/board");
+		if(f.mkdir()) {
+			System.out.println(f.getPath() + " 생성");
+		}
+		
 		FileOutputStream output = new FileOutputStream("D:/board/result.html");
 //		String delete = "								<a class=\"link_sub_item\" href=\"/category/";
 		while((temp = br.readLine()) != null) {
